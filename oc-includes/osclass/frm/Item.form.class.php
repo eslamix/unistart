@@ -37,49 +37,150 @@ class ItemForm extends Form {
   * @return bool
   * @throws \Exception
   */
-  public static function category_select($categories = null , $item = null , $default_item = null , $parent_selectable = false) {
-    // Did user select a specific category to post in?
-    $catId = Params::getParam('catId');
-    if(Session::newInstance()->_getForm('catId') > 0) {
-      $catId = Session::newInstance()->_getForm('catId');
-    }
-
-    if($categories == null) {
-      if(View::newInstance()->_exists('categories')) {
-        $categories = View::newInstance()->_get('categories');
-      } else {
-        $categories = osc_get_categories();
-      }
-    }
-
-    if ($item == null) { $item = osc_item(); }
-
-    echo '<select name="catId" id="catId">';
-    if(isset($default_item)) {
-      echo '<option value="">' . $default_item . '</option>';
-    } else {
-      echo '<option value="">' . __('Select a category') . '</option>';
-    }
-
-    if(count($categories)==1) { $parent_selectable = 1; }
-
-    foreach($categories as $c) {
-      if (!osc_selectable_parent_categories() && !$parent_selectable) {
-        echo '<optgroup label="' . $c['s_name'] . '">';
-        if(isset($c['categories']) && is_array($c['categories'])) {
-          self::subcategory_select($c[ 'categories' ] , $item , $default_item , 1);
-        }
-      } else {
-        $selected = ((isset($item[ 'fk_i_category_id' ]) && $item[ 'fk_i_category_id' ] == $c['pk_i_id']) || (isset($catId) && $catId == $c['pk_i_id']));
-        echo '<option value="' . $c['pk_i_id'] . '"' . ($selected ? ' selected="selected"' : ''). '>' . $c['s_name'] . '</option>';
-        if(isset($c['categories']) && is_array($c['categories'])) {
-          self::subcategory_select($c[ 'categories' ] , $item , $default_item , 1);
-        }
-      }
-    }
-    echo '</select>';
-    return true;
+public static function category_select($categories = null , $item = null , $default_item = null , $parent_selectable = false) {
+  // تحديد القسم الحالي (لو المستخدم بيعدل أو رجع من فورم)
+  $catId = Params::getParam('catId');
+  if(Session::newInstance()->_getForm('catId') > 0) {
+    $catId = Session::newInstance()->_getForm('catId');
   }
+
+  // تحميل الأقسام من النظام
+  if($categories == null) {
+    if(View::newInstance()->_exists('categories')) {
+      $categories = View::newInstance()->_get('categories');
+    } else {
+      $categories = osc_get_categories();
+    }
+  }
+
+  if ($item == null) { $item = osc_item(); }
+
+  // --- CSS ---
+  echo '
+  <style>
+    .category-select-wrapper {
+    margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .category-select-wrapper label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+      display: block;
+    }
+    .category-select-wrapper select {
+    
+      width: 60%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+      background-color: #fff;
+    }
+    .category-select-wrapper select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    #subcategory-wrapper {
+      display: none;
+    }
+  </style>
+  ';
+
+  // --- HTML ---
+  echo '<div class="category-select-wrapper">';
+
+  // 🟢 القسم الرئيسي
+  echo '<div>';
+  echo '<label for="mainCat">' . __('الجامعة', 'dreamfree') . '</label>';
+  echo '<select id="mainCat" class="form-control">';
+  echo '<option value="">' . __('اختر الجامعة', 'dreamfree') . '</option>';
+  foreach($categories as $c) {
+    echo '<option value="' . $c['pk_i_id'] . '">' . $c['s_name'] . '</option>';
+  }
+  echo '</select>';
+  echo '</div>';
+
+  // 🟣 القسم الفرعي (مخفي افتراضيًا)
+  echo '<div id="subcategory-wrapper">';
+  echo '<label for="catId">' . __('الكلية', 'dreamfree') . '</label>';
+  echo '<select name="catId" id="catId" class="form-control">';
+  echo '<option value="">' . __('اختر الكلية', 'dreamfree') . '</option>';
+  echo '</select>';
+  echo '</div>';
+
+  echo '</div>';
+
+  // --- JS ---
+  echo '<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const mainSelect = document.getElementById("mainCat");
+      const subSelect = document.getElementById("catId");
+      const subWrapper = document.getElementById("subcategory-wrapper");
+      const categories = ' . json_encode($categories) . ';
+
+      subWrapper.style.display = "none";
+
+      mainSelect.addEventListener("change", function() {
+        const mainId = this.value;
+        subSelect.innerHTML = "<option value=\'\'>'.osc_esc_html(__('اختر الكلية', 'dreamfree')).'</option>";
+
+        if(!mainId) {
+          subWrapper.style.display = "none";
+          subSelect.value = "";
+          return;
+        }
+
+        const selectedCat = categories.find(c => c.pk_i_id == mainId);
+        if(selectedCat && selectedCat.categories && selectedCat.categories.length > 0) {
+          // القسم عنده أقسام فرعية → أظهرها
+          subWrapper.style.display = "block";
+          subSelect.removeAttribute("disabled");
+
+          selectedCat.categories.forEach(sub => {
+            const opt = document.createElement("option");
+            opt.value = sub.pk_i_id;
+            opt.textContent = sub.s_name;
+            subSelect.appendChild(opt);
+          });
+
+          // لما المستخدم يختار فرعي، ده اللي يتبعت
+          subSelect.addEventListener("change", function() {
+            if(this.value === "") {
+              this.value = "";
+            }
+          });
+
+        } else {
+          // القسم مفيهوش أقسام فرعية → استخدمه هو كـ catId
+          subWrapper.style.display = "none";
+          subSelect.innerHTML = "";
+          subSelect.value = mainId;
+
+          // 👇 إنشاء input مخفي يرسل الـ mainId في catId
+          let hiddenInput = document.getElementById("hiddenCatInput");
+          if(!hiddenInput) {
+            hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "catId";
+            hiddenInput.id = "hiddenCatInput";
+            document.forms["item"].appendChild(hiddenInput);
+          }
+          hiddenInput.value = mainId;
+        }
+      });
+    });
+  </script>';
+
+  return true;
+}
+
+
+
 
   /**
   * @param null $categories
@@ -131,16 +232,16 @@ class ItemForm extends Form {
       <?php
       if(!empty($subcategory)) {
         if(count($subcategory['categories']) > 0) {
-          echo '<option value="">'.__('Select Subcategory').'</option>';
+          echo '<option value="">'.__('اختر الكلية').'</option>';
           foreach($subcategory['categories'] as $c) {
             $selected = ((isset($item[ 'fk_i_category_id' ]) && $item[ 'fk_i_category_id' ] == $c['pk_i_id']) || (isset($subcategoryID) && $subcategoryID == $c['pk_i_id']));
             echo '<option value="'.$c['pk_i_id'].'" '.($selected ? 'selected="selected"' : '').'>'.$c['s_name'].'</option>';
           }
         } else {
-          echo '<option value="'.$category['pk_i_id'].'" >'.__('No Subcategory').'</option>';
+          echo '<option value="'.$category['pk_i_id'].'" >'.__('لا يوجد اقسام').'</option>';
         }
       } else {
-        echo '<option value="">'.__('Select Subcategory').'</option>';
+        echo '<option value="">'.__('اختر الكلية').'</option>';
       }
       ?>
     </select>

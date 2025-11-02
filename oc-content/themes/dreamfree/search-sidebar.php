@@ -43,32 +43,25 @@ if(!isset($category['pk_i_id'])) {
                 <span class="input-group-text" id="basic-addon">
                     <i class="fa fa-th-large"></i>
 
-                   <?php
-
+                  <?php
 $categories = Category::newInstance()->toTree();
 
-echo '<select name="sCategory" id="sCategory" class="form-control">';
+echo '<select name="sCategory[]" id="sCategory" class="form-control">';
 echo '<option value="">' . __('Select a category', 'dreamfree') . '</option>';
 
 foreach ($categories as $c) {
     $hasSubcategories = isset($c['categories']) && count($c['categories']) > 0;
+    echo '<option value="' . $c['pk_i_id'] . '" style="font-weight:bold;">' . osc_esc_html($c['s_name']) . '</option>';
 
-    $style = 'style="color:#007bff;font-weight:bold;background:#f9f9f9;"';
-
-    echo '<option value="' . $c['pk_i_id'] . '" ' . $style . '>';
-    echo osc_esc_html($c['s_name']);
-    echo '</option>';
-
-    // الأقسام الفرعية (بشكل عادي)
     if ($hasSubcategories) {
         foreach ($c['categories'] as $sub) {
-            echo '<option value="' . $sub['pk_i_id'] . '">&nbsp;&nbsp;— ' . osc_esc_html($sub['s_name']) . '</option>';
+            echo '<option value="' . $sub['pk_i_id'] . '">— ' . osc_esc_html($sub['s_name']) . '</option>';
         }
     }
 }
-
 echo '</select>';
 ?>
+
 
                 </span>
             </div>
@@ -79,7 +72,16 @@ echo '</select>';
             <div class="input-group-prepend user-input-profile">
                 <span class="input-group-text" id="basic-addon1">
                     <i class="fa fa-globe"></i>
-                    <?php UserForm::country_select(osc_get_countries(), osc_user()); ?>
+<select name="sCountry" id="sCountry" class="form-control">
+    <option value=""><?php _e('Select a country', 'dreamfree'); ?></option>
+    <?php foreach(osc_get_countries() as $country) { 
+        $selected = ($country['pk_c_code'] == osc_search_country()) ? 'selected' : '';
+    ?>
+        <option value="<?php echo $country['pk_c_code']; ?>" <?php echo $selected; ?>>
+            <?php echo osc_esc_html($country['s_name']); ?>
+        </option>
+    <?php } ?>
+</select>
                 </span>
             </div>
         </div>
@@ -129,10 +131,13 @@ echo '</select>';
         </div>
 
         <?php
-        $aCategories = osc_search_category();
-        foreach($aCategories as $cat_id) { ?>
-            <input type="hidden" name="sCategory[]" value="<?php echo osc_esc_html($cat_id); ?>"/>
-        <?php } ?>
+       $aCategories = osc_search_category();
+if (empty($_GET['sCategory'])) {
+    foreach($aCategories as $cat_id) { ?>
+        <input type="hidden" name="sCategory[]" value="<?php echo osc_esc_html($cat_id); ?>"/>
+<?php }
+}
+ ?>
 
         <div class="actions">
             <button class="btn btn-danger" type="submit"><?php _e('Apply', 'dreamfree'); ?></button>
