@@ -28,10 +28,48 @@
     </p>
 
     <!-- التصنيف -->
-    <div class="item-category">
-      <i class="fa fa-university"></i>
-      <?php echo osc_esc_html( osc_item_category() ); ?>
-    </div>
+    <?php
+// تعريف الدالة مرة واحدة فقط
+if(!function_exists('find_parent')) {
+    function find_parent($tree, $id) {
+        foreach($tree as $c) {
+            if(isset($c['categories']) && count($c['categories']) > 0) {
+                foreach($c['categories'] as $sub) {
+                    if($sub['pk_i_id'] == $id) {
+                        return $c['s_name'];
+                    }
+                }
+                // بحث داخل المستوى التالي
+                $res = find_parent($c['categories'], $id);
+                if($res) return $res;
+            }
+        }
+        return null;
+    }
+}
+
+// جلب شجرة الأقسام مرة واحدة في الصفحة
+if(!isset($category_tree)) {
+    $category_tree = Category::newInstance()->toTree();
+}
+
+// جلب بيانات الإعلان الحالي
+$cat_id   = osc_item_category_id(); // id القسم الحالي
+$cat_name = osc_item_category();    // اسم القسم الحالي
+$parent_name = find_parent($category_tree, $cat_id); // اسم القسم الرئيسي إن وجد
+?>
+
+<div class="item-category">
+    <i class="fa fa-university"></i>
+    <?php
+        if($parent_name) {
+            echo osc_esc_html($parent_name) . ' › ' . osc_esc_html($cat_name);
+        } else {
+            echo osc_esc_html($cat_name);
+        }
+    ?>
+</div>
+
 
     <!-- نوع المشروع -->
     <div class="item-location">
