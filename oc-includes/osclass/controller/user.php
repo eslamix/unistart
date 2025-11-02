@@ -413,7 +413,11 @@ class CWebUser extends WebSecBaseModel {
         $options['per_page'] = ($options['per_page'] <= 0 ? 16 : $options['per_page']);
         
         
-        $custom_conditions_and = osc_apply_filter('user_items_custom_conditions_and', '', $params, $url_params);
+if (!isset($url_params)) {
+    $url_params = array();
+}
+
+$custom_conditions_and = osc_apply_filter('user_items_custom_conditions_and', '', $params, $url_params);
         
         if($custom_conditions_and) {
           $options['custom_conditions_and'] = $custom_conditions_and;
