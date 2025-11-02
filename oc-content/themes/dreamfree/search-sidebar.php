@@ -11,10 +11,6 @@ if(!isset($category['pk_i_id'])) {
 
 <div id="sidebar">
 
-  <!-- <button class="btn btn-danger for-Subscribe" type="button" data-toggle="collapse" data-target="#collapseExamplea" aria-expanded="false" aria-controls="collapseExamplea">
-    <strong><?php _e('Subscribe to this search', 'dreamfree'); ?><i class="fa fa-bell-o"></i></strong>
-  </button> -->
-
   <div class="collapse" id="collapseExamplea">
     <div class="card card-body">
       <?php osc_alert_form(); ?>
@@ -46,7 +42,34 @@ if(!isset($category['pk_i_id'])) {
             <div class="input-group-prepend user-input-profile">
                 <span class="input-group-text" id="basic-addon">
                     <i class="fa fa-th-large"></i>
-                    <?php osc_categories_select('sCategory', null, __('Select a category', 'dreamfree')); ?>
+
+                   <?php
+
+$categories = Category::newInstance()->toTree();
+
+echo '<select name="sCategory" id="sCategory" class="form-control">';
+echo '<option value="">' . __('Select a category', 'dreamfree') . '</option>';
+
+foreach ($categories as $c) {
+    $hasSubcategories = isset($c['categories']) && count($c['categories']) > 0;
+
+    $style = 'style="color:#007bff;font-weight:bold;background:#f9f9f9;"';
+
+    echo '<option value="' . $c['pk_i_id'] . '" ' . $style . '>';
+    echo osc_esc_html($c['s_name']);
+    echo '</option>';
+
+    // الأقسام الفرعية (بشكل عادي)
+    if ($hasSubcategories) {
+        foreach ($c['categories'] as $sub) {
+            echo '<option value="' . $sub['pk_i_id'] . '">&nbsp;&nbsp;— ' . osc_esc_html($sub['s_name']) . '</option>';
+        }
+    }
+}
+
+echo '</select>';
+?>
+
                 </span>
             </div>
         </div>
@@ -60,17 +83,6 @@ if(!isset($category['pk_i_id'])) {
                 </span>
             </div>
         </div>
-
-        <!-- <label class="control-label" for="City"><?php _e('City', 'dreamfree'); ?></label>
-        <input type="hidden" id="sRegion" name="sRegion" value="<?php echo osc_esc_html(Params::getParam('sSearch')); ?>" />
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                    <i class="fa fa-map-marker"></i>
-                    <input class="form-control" type="text" id="sCity" name="sCity" value="<?php echo osc_esc_html(osc_search_city()); ?>" />
-                </span>
-            </div>
-        </div> -->
 
         <?php if(osc_images_enabled_at_items()) { ?>
             <label class="control-label" for="message"><?php _e('Show only', 'dreamfree'); ?></label>
