@@ -7,7 +7,7 @@
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -38,7 +38,7 @@
       <div class="clear"></div>
 
       <?php if( (!defined('MULTISITE') || MULTISITE==0) && osc_get_preference('footer_link', 'sigma') !== '0') {
-        echo '<div class="copy">' . sprintf(__('Powered by <a title="Osclass classifieds script" href="%s">best classifieds scripts</a> osclass'), 'https://osclass-classifieds.com') . '</div>';
+        echo '<div class="copy">' . sprintf(__('Powered by <a title="Osclass classifieds script" href="%s">best classifieds scripts</a> osclass'), '#') . '</div>';
       } ?>
 
       <?php if ( osc_count_web_enabled_locales() > 1) { ?>

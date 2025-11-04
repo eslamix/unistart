@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Osclass by OsclassPoint.com\n"
-"Report-Msgid-Bugs-To: https://osclass-classifieds.com/\n"
+"Report-Msgid-Bugs-To: #/\n"
 "POT-Creation-Date: 2023-04-24 15:46+0200\n"
 "PO-Revision-Date: 2025-06-17 09:52+0300\n"
 "Last-Translator: Translations <salymyaw@gmail.com>\n"
@@ -12373,8 +12373,8 @@ msgid "Remember that for any doubts you might have you can consult our <a href=\
 msgstr "تذكر أنه إذا كانت لديك أي شكوك ، فيمكنك الرجوع إلى  <a href=\"%1$s\"> وثائقنا </a>"
 
 #: oc-includes/osclass/install-location.php:129
-msgid "The <a href=\"https://osclass-classifieds.com\">OsclassPoint</a> team"
-msgstr "فريق <a href=\"https://osclass-classifieds.com\"> OsclassPoint </a>"
+msgid "The <a href=\"#\">OsclassPoint</a> team"
+msgstr "فريق <a href=\"#\"> OsclassPoint </a>"
 
 #: oc-includes/osclass/install.php:94
 msgid "Looks like you've already installed Osclass. To reinstall please clear your old database tables first."

@@ -627,9 +627,9 @@ CREATE TABLE `oc_t_locale` (
 --
 
 INSERT INTO `oc_t_locale` (`pk_c_code`, `s_name`, `s_short_name`, `s_description`, `s_version`, `s_author_name`, `s_author_url`, `s_currency_format`, `s_dec_point`, `s_thousands_sep`, `i_num_dec`, `s_date_format`, `s_stop_words`, `b_enabled`, `b_enabled_bo`, `b_locations_native`, `b_rtl`, `fk_c_currency_code`) VALUES
-('ar_EG', 'عربي', 'Ar', 'الترجمة العربية', '8.2.1', 'OsclassPoint', 'https://osclass-classifieds.com/', '{NUMBER} {CURRENCY}', '.', '', 2, 'd/m/Y', '', 1, 1, 1, 1, NULL),
+('ar_EG', 'عربي', 'Ar', 'الترجمة العربية', '8.2.1', 'OsclassPoint', '#/', '{NUMBER} {CURRENCY}', '.', '', 2, 'd/m/Y', '', 1, 1, 1, 1, NULL),
 ('ar_SY', 'Arabic', 'Arabic', 'Arabic translation', '8.3.0', 'Osclass', 'salymyaw@gmail.com', '{NUMBER} {CURRENCY}', '.', '', 2, 'm/d/Y', '', 1, 1, 0, 0, NULL),
-('en_US', 'English (US)', 'English', 'American english translation', '8.3.0', 'OsclassPoint', 'https://osclass-classifieds.com/', '{NUMBER} {CURRENCY}', '.', '', 2, 'm/d/Y', 'i,a,about,an,are,as,at,be,by,com,for,from,how,in,is,it,of,on,or,that,the,this,to,was,what,when,where,who,will,with,the', 1, 1, 0, 0, NULL);
+('en_US', 'English (US)', 'English', 'American english translation', '8.3.0', 'OsclassPoint', '#/', '{NUMBER} {CURRENCY}', '.', '', 2, 'm/d/Y', 'i,a,about,an,are,as,at,be,by,com,for,from,how,in,is,it,of,on,or,that,the,this,to,was,what,when,where,who,will,with,the', 1, 1, 0, 0, NULL);
 
 -- --------------------------------------------------------
 

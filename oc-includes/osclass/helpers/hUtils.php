@@ -7,7 +7,7 @@
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -551,7 +551,7 @@ function osc_subdomains_filter_to_dao($object, $item_table = '') {
  * @return string
  */
 function osc_get_locations_json_url() {
-  return 'https://osclass-classifieds.com/extras/locations_v3/list.json';
+  return '#/extras/locations_v3/list.json';
 }
 
 /**
@@ -562,7 +562,7 @@ function osc_get_locations_json_url() {
  */
 function osc_get_locations_sql_url($location) {
   $location = rawurlencode($location);
-  return 'https://osclass-classifieds.com/extras/locations_v3/'.$location;
+  return '#/extras/locations_v3/'.$location;
 }
 
 /**
@@ -571,7 +571,7 @@ function osc_get_locations_sql_url($location) {
  * @return string
  */
 function osc_get_languages_json_url() {
-  return 'https://osclass-classifieds.com/extras/languages/list.json';
+  return '#/extras/languages/list.json';
 }
 
 /**
@@ -582,7 +582,7 @@ function osc_get_languages_json_url() {
  */
 function osc_get_language_zip_url($language) {
   $location = rawurlencode($language);
-  return 'https://osclass-classifieds.com/extras/languages/'.$language;
+  return '#/extras/languages/'.$language;
 }
 
 /**

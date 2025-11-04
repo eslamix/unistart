@@ -7,7 +7,7 @@
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -298,7 +298,7 @@ switch ($step) {
 
 <div id="footer">
   <div>
-    <a href="https://osclass-classifieds.com" target="_blank" hreflang="en"><?php _e('Osclass'); ?></a>
+    <a href="#" target="_blank" hreflang="en"><?php _e('Osclass'); ?></a>
     <a href="https://docs.osclass-classifieds.com" target="_blank" hreflang="en"><?php _e('Documentation'); ?></a>
     <a href="https://forums.osclasspoint.com" target="_blank" hreflang="en"><?php _e('Forums'); ?></a>
     <a href="https://osclasspoint.com" target="_blank" hreflang="en"><?php _e('Market'); ?></a>

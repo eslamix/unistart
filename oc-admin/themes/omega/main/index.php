@@ -8,7 +8,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -644,7 +644,7 @@ function osc_admin_widget_collapsed($id) {
               </div>
               <div class="widget-box-content" <?php echo (osc_admin_widget_collapsed('links') ? 'style="display:none;"' : ''); ?>>
                 <ul>
-                  <li><a href="https://osclass-classifieds.com/download"><?php _e('Download osclass'); ?> <i class="fa fa-external-link"></i></a></li>
+                  <li><a href="#/download"><?php _e('Download osclass'); ?> <i class="fa fa-external-link"></i></a></li>
                   <li><a href="https://osclasspoint.com/"><?php _e('Market'); ?> <i class="fa fa-external-link"></i></a></li>
                   <li><a href="https://forums.osclasspoint.com/"><?php _e('Forums'); ?> <i class="fa fa-external-link"></i></a></li>
                   <li><a href="https://docs.osclass-classifieds.com/"><?php _e('Documentation'); ?> <i class="fa fa-external-link"></i></a></li>

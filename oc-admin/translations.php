@@ -9,7 +9,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -236,7 +236,7 @@ class CAdminTranslations extends AdminSecBaseModel {
               'description' => isset($function_data['description']) ? $function_data['description'] : (isset($db_data['s_description']) ? $db_data['s_description'] : ''),
               'version' => osc_version(true),
               'author_name' => 'OsclassPoint',
-              'author_url' => 'https://osclass-classifieds.com/',
+              'author_url' => '#/',
               'currency_format' => isset($function_data['currency_format']) ? $function_data['currency_format'] : (isset($db_data['s_currency_format']) ? $db_data['s_currency_format'] : '{NUMBER} {CURRENCY}'),
               'date_format' => isset($function_data['date_format']) ? $function_data['date_format'] : (isset($db_data['s_date_format']) ? $db_data['s_date_format'] : 'd/m/Y'),
               'stop_words' => isset($function_data['stop_words']) ? $function_data['stop_words'] : (isset($db_data['s_stop_words']) ? $db_data['s_stop_words'] : ''),

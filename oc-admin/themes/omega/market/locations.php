@@ -8,7 +8,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -77,7 +77,7 @@ osc_current_admin_theme_path( 'market/header.php' );
     </div>
 
     <?php if(is_array($products) && count($products) > 0) { ?>
-      <div class="info"><?php echo sprintf(__('Locations contains country, region and city data those are used in diffrent situations by osclass. You may automatically install locations from the %s or upload a location in .sql format.'), '<a href="https://osclass-classifieds.com/locations">' . __('OsclassPoint Locations Directory') . '</a>'); ?></div>
+      <div class="info"><?php echo sprintf(__('Locations contains country, region and city data those are used in diffrent situations by osclass. You may automatically install locations from the %s or upload a location in .sql format.'), '<a href="#/locations">' . __('OsclassPoint Locations Directory') . '</a>'); ?></div>
 
       <?php foreach($products as $p) { ?>
         <?php

@@ -90,7 +90,70 @@ if(Params::getParam('action') == 'item_edit') {
                         </div>
                     </div> -->
 
-                    <input type="file" name="pdf_file" accept="application/pdf">
+<style>
+.upload-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* مسافة بين النص والزر */
+  font-family: "Cairo", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-upload {
+  border: 2px solid #007bff; /* لون الحواف */
+  color: #000; /* لون النص */
+  background-color: transparent; /* بدون خلفية */
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-upload:hover {
+  background-color: #007bff; /* يظهر لون عند المرور */
+  color: #fff; /* يتحول النص إلى أبيض */
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+</style>
+
+<div class="upload-section">
+  <span>إضافة ملف PDF:</span>
+  <div class="upload-btn-wrapper">
+    <button class="btn-upload" id="uploadLabel">📄 اختر الملف</button>
+    <input type="file" name="pdf_file" accept="application/pdf" id="pdfInput">
+  </div>
+</div>
+
+<script>
+const pdfInput = document.getElementById('pdfInput');
+const uploadLabel = document.getElementById('uploadLabel');
+
+pdfInput.addEventListener('change', function() {
+  if (this.files && this.files.length > 0) {
+    let fileName = this.files[0].name;
+    uploadLabel.textContent = "📄 " + fileName;
+  } else {
+    uploadLabel.textContent = "📄 اختر الملف";
+  }
+});
+</script>
 
 
 

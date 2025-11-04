@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Osclass by OsclassPoint.com\n"
-"Report-Msgid-Bugs-To: https://osclass-classifieds.com/\n"
+"Report-Msgid-Bugs-To: #/\n"
 "POT-Creation-Date: 2025-06-02 15:12+0200\n"
 "PO-Revision-Date: 2025-06-02 15:12+0200\n"
 "Last-Translator: Translations <translations@osclass>\n"

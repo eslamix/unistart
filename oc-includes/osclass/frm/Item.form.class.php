@@ -8,7 +8,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
  * you may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *    https://osclass-classifieds.com/download
+ *    #/download
  *
  * Software is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -1916,7 +1916,20 @@ public static function category_select($categories = null , $item = null , $defa
             <span><?php _e('Drop files here to upload'); ?></span>
           </div>
 
-          <div id="uppy-upload-button" class="qq-upload-button">
+          <div id="uppy-upload-button" class="qq-upload-button" style="
+    height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 2px dashed #007bff;
+      border-radius: 10px;
+      color: #000;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    ">
             <div><?php _e('Upload images'); ?></div>
             <!--<input multiple="multiple" type="file" name="qqfile" style="display:none">-->
           </div>

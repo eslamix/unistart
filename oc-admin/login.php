@@ -9,7 +9,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -237,7 +237,7 @@ class CAdminLogin extends AdminBaseModel
   //in this case, this function is prepared for the "recover your password" form
   function doView($file) {
     $login_admin_title = osc_apply_filter('login_admin_title', 'Osclass');
-    $login_admin_url   = osc_apply_filter('login_admin_url', 'https://osclass-classifieds.com');
+    $login_admin_url   = osc_apply_filter('login_admin_url', '#');
     $login_admin_image = osc_apply_filter('login_admin_image', osc_admin_base_url() . 'images/osclass-logo.gif');
 
     View::newInstance()->_exportVariableToView('login_admin_title', $login_admin_title);

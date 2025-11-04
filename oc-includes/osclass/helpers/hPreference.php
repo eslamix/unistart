@@ -7,7 +7,7 @@
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -1400,7 +1400,7 @@ function osc_market_external_sources() {
 
 
 function osc_osclass_url($action = '') {
-  $url = 'https://osclass-classifieds.com/api/latest_version.php';
+  $url = '#/api/latest_version.php';
   $params = array();
   
   if($action != '') {
@@ -1426,7 +1426,7 @@ function osc_osclass_url($action = '') {
 
 
 function osc_share_translation_url($language, $type, $plugin = '', $theme = '') {
-  $url = 'https://osclass-classifieds.com/api/share_translation.php';
+  $url = '#/api/share_translation.php';
   $params = array();
   
   if($language != '') {
@@ -1456,7 +1456,7 @@ function osc_share_translation_url($language, $type, $plugin = '', $theme = '') 
 
 
 function osc_language_url($code = '', $pattern = '', $sort = '', $type = 'osclass') {
-  $api_url = 'https://osclass-classifieds.com/api/language.php';
+  $api_url = '#/api/language.php';
   $osclass_version = trim(str_replace('.', '', osc_version()));
   
   if($code == '' && $pattern == '') {
@@ -1480,7 +1480,7 @@ function osc_language_url($code = '', $pattern = '', $sort = '', $type = 'osclas
 
 
 function osc_location_url($code = '', $pattern = '', $sort = '') {
-  $api_url = 'https://osclass-classifieds.com/api/location.php';
+  $api_url = '#/api/location.php';
   $api_version = '3';
 
   if($code == '' && $pattern == '') {

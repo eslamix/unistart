@@ -6,7 +6,7 @@ function locale_ar_EG_info() {
     'description' => 'الترجمة العربية',
     'version' => '8.3.0',
     'author_name' => 'OsclassPoint',
-    'author_url' => 'https://osclass-classifieds.com/',
+    'author_url' => '#/',
     'currency_format' => '{NUMBER} {CURRENCY}',
     'date_format' => 'd/m/Y',
     'stop_words' => '',

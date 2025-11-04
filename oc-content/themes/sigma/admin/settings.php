@@ -7,7 +7,7 @@
  * You may not use this file except in compliance with the License.
  * You may download copy of Osclass at
  *
- *     https://osclass-classifieds.com/download
+ *     #/download
  *
  * Do not edit or add to this file if you wish to upgrade Osclass to newer
  * versions in the future. Software is distributed on an "AS IS" basis, without
@@ -26,7 +26,7 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
     <input type="hidden" name="rm" value="2">
     <input type="hidden" name="business" value="info@osclass">
     <input type="hidden" name="item_name" value="Osclass project">
-    <input type="hidden" name="return" value="https://osclass-classifieds.com/paypal/">
+    <input type="hidden" name="return" value="#/paypal/">
     <input type="hidden" name="currency_code" value="USD">
     <input type="hidden" name="lc" value="US" />
     <input type="hidden" name="custom" value="<?php echo osc_admin_render_theme_url('oc-content/themes/sigma/admin/settings.php'); ?>&donation=successful&source=sigma">
@@ -63,8 +63,8 @@ if(!defined('ABS_PATH')) exit('ABS_PATH is not loaded. Direct access is not allo
             <div class="form-row">
                 <div class="form-label"><?php _e('Footer link', 'sigma'); ?></div>
                 <div class="form-controls">
-                    <div class="form-label-checkbox"><input type="checkbox" name="footer_link" value="1" <?php echo (osc_get_preference('footer_link', 'sigma') ? 'checked' : ''); ?> > <?php _e('I want to help Osclass by linking to <a href="https://osclass-classifieds.com/" target="_blank">osclass</a> from my site with the following text:', 'sigma'); ?></div>
-                    <span class="help-box"><?php _e('This website is proudly using the <a title="Osclass web" href="https://osclass-classifieds.com/">classifieds scripts</a> software <strong>Osclass</strong>', 'sigma'); ?></span>
+                    <div class="form-label-checkbox"><input type="checkbox" name="footer_link" value="1" <?php echo (osc_get_preference('footer_link', 'sigma') ? 'checked' : ''); ?> > <?php _e('I want to help Osclass by linking to <a href="#/" target="_blank">osclass</a> from my site with the following text:', 'sigma'); ?></div>
+                    <span class="help-box"><?php _e('This website is proudly using the <a title="Osclass web" href="#/">classifieds scripts</a> software <strong>Osclass</strong>', 'sigma'); ?></span>
                 </div>
             </div>
             <?php } ?>
