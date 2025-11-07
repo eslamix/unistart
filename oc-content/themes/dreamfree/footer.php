@@ -111,10 +111,29 @@
         <th><a href="<?php echo osc_get_preference('twitter', 'dreamfree'); ?>"><i class="fab fa-twitter-square"></i></a></th>
         <th><a href="<?php echo osc_get_preference('linkedin', 'dreamfree'); ?>"><i class="fab fa-linkedin-in"></i></a></th>
 </div>
-<?php _e('All rights reserved', 'dreamfree'); ?><i class="fa fa-copyright"></i><a href="<?php echo osc_get_preference('link-site', 'dreamfree'); ?>">&nbsp;<?php echo osc_get_preference('name-site', 'dreamfree'); ?></a></div>
+<div class="text-center mt-3" 
+     style="color:#000; font-size:14px; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:15px;">
+
+  <p style="margin:0;">
+    © <?php echo date('Y'); ?> جميع الحقوق محفوظة لموقع 
+    <a href="<?php echo osc_get_preference('link-site', 'dreamfree'); ?>" 
+       style="color:#000; text-decoration:underline;">
+      <?php echo osc_get_preference('name-site', 'dreamfree'); ?>
+    </a>
+  </p>
+
+  <p style="margin:0; display:flex; align-items:center;">
+    تحت رعاية 
+    <img src="<?php echo osc_current_web_theme_url('ihub.jpg'); ?>" 
+         alt="الجهة الراعية" 
+         style="height:100px; vertical-align:middle; margin-right:5px; margin-left:5px;">
+  </p>
+</div>
 <div class=" "><?php _e('  <a title=" " href="#">  </a> <strong>   </strong>', ' '); ?></div>
+
 </div>
 </div>
+
 	  <!------ new footer ---------->  
 <?php osc_run_hook('footer'); ?>
 <div class="mobail-foteer">   
